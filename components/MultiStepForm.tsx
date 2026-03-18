@@ -73,15 +73,24 @@ export default function MultiStepForm() {
     })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const qual = isQualified(formData)
     setQualified(qual)
 
     if (qual) {
-      // Fire Facebook Pixel Lead event
       if (typeof window !== 'undefined' && (window as any).fbq) {
         ;(window as any).fbq('track', 'Lead')
       }
+    }
+
+    try {
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, qualificado: qual }),
+      })
+    } catch (err) {
+      console.error('Erro ao enviar lead:', err)
     }
 
     setSubmitted(true)
