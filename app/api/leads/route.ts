@@ -11,13 +11,11 @@ export async function POST(req: NextRequest) {
 
     const payload = {
       id: data.id,
-      campos_formulario: [
-        data.valorDivida,
-        data.situacaoDivida,
-        data.garantias,
-        data.bancos,
-        data.qualificado ? 'Qualificado' : 'Não qualificado',
-      ].join(' | '),
+      valor_divida: data.valorDivida,
+      situacao_divida: data.situacaoDivida,
+      garantias: data.garantias,
+      bancos: data.bancos,
+      qualificado: data.qualificado ? 'Sim' : 'Não',
       name: data.nome,
       email: data.email,
       phone: data.whatsapp,
