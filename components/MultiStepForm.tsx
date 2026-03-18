@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type FormData = {
@@ -9,7 +9,17 @@ type FormData = {
   garantias: string
   bancos: string[]
   nome: string
+  email: string
   whatsapp: string
+}
+
+type UtmData = {
+  utm_source: string
+  utm_medium: string
+  utm_campaign: string
+  utm_content: string
+  utm_term: string
+  fbclid: string
 }
 
 const QUALIFIED_BANKS = ['Itaú', 'Bradesco', 'Santander', 'Banco do Brasil']
@@ -36,6 +46,10 @@ function formatWhatsApp(value: string): string {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
 }
 
+function generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7)
+}
+
 const slideVariants = {
   enter: { x: 60, opacity: 0 },
   center: { x: 0, opacity: 1 },
@@ -52,11 +66,34 @@ export default function MultiStepForm() {
     garantias: '',
     bancos: [],
     nome: '',
+    email: '',
     whatsapp: '',
   })
 
+  const utmRef = useRef<UtmData>({
+    utm_source: '',
+    utm_medium: '',
+    utm_campaign: '',
+    utm_content: '',
+    utm_term: '',
+    fbclid: '',
+  })
+
+  const leadIdRef = useRef<string>(generateId())
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    utmRef.current = {
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+      utm_content: params.get('utm_content') || '',
+      utm_term: params.get('utm_term') || '',
+      fbclid: params.get('fbclid') || '',
+    }
+  }, [])
+
   const totalSteps = 5
-  const progress = ((step) / (totalSteps - 1)) * 100
 
   const selectSingle = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -87,7 +124,12 @@ export default function MultiStepForm() {
       await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, qualificado: qual }),
+        body: JSON.stringify({
+          id: leadIdRef.current,
+          ...formData,
+          qualificado: qual,
+          ...utmRef.current,
+        }),
       })
     } catch (err) {
       console.error('Erro ao enviar lead:', err)
@@ -420,6 +462,17 @@ export default function MultiStepForm() {
                   value={formData.nome}
                   onChange={(e) => setFormData((p) => ({ ...p, nome: e.target.value }))}
                   placeholder="Seu nome"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#20264F]"
+                  style={{ color: '#20264F' }}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">E-mail</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+                  placeholder="seu@email.com"
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#20264F]"
                   style={{ color: '#20264F' }}
                 />

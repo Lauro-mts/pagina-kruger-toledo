@@ -10,14 +10,24 @@ export async function POST(req: NextRequest) {
     }
 
     const payload = {
-      data: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
-      nome: data.nome,
-      whatsapp: data.whatsapp,
-      valorDivida: data.valorDivida,
-      situacaoDivida: data.situacaoDivida,
-      garantias: data.garantias,
-      bancos: data.bancos.join(', '),
-      qualificado: data.qualificado ? 'Sim' : 'Não',
+      id: data.id,
+      campos_formulario: [
+        data.valorDivida,
+        data.situacaoDivida,
+        data.garantias,
+        data.bancos,
+        data.qualificado ? 'Qualificado' : 'Não qualificado',
+      ].join(' | '),
+      name: data.nome,
+      email: data.email,
+      phone: data.whatsapp,
+      timestamp: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
+      utm_source: data.utm_source,
+      utm_medium: data.utm_medium,
+      utm_campaign: data.utm_campaign,
+      utm_content: data.utm_content,
+      utm_term: data.utm_term,
+      fbclid: data.fbclid,
     }
 
     await fetch(webhookUrl, {
