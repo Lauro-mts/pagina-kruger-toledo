@@ -32,7 +32,7 @@ function isQualified(data: FormData): boolean {
     'Acima de R$ 1 milhão',
   ].includes(data.valorDivida)
 
-  const inArrears = data.situacaoDivida === 'Sim'
+  const inArrears = data.situacaoDivida === 'Sim' || data.situacaoDivida === 'Não, mas não tenho mais condições de pagar as próximas parcelas'
   const noOrPartialGuarantee = data.garantias === 'Não' || data.garantias === 'Parcialmente'
   const hasQualifiedBank = data.bancos.some((b) => QUALIFIED_BANKS.includes(b))
 
