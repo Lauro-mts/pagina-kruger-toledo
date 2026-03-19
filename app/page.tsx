@@ -53,7 +53,7 @@ export default function Home() {
             </div>
 
             <p className="text-center text-xs mt-4" style={{ color: '#F5F0DC66' }}>
-              As vagas para a análise são limitadas e podem encerrar a qualquer momento.
+              As vagas para a análise são limitadas e podem encerrar a qualquer momento!
             </p>
             <ul className="flex justify-center gap-8 mt-3">
               {[
