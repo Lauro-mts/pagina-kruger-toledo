@@ -2,10 +2,10 @@ import MultiStepForm from '@/components/MultiStepForm'
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative" style={{ backgroundColor: '#20264F' }}>
+    <main className="min-h-screen relative" style={{ backgroundColor: '#12100A' }}>
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(135deg, #1a2040 0%, #20264F 40%, #2a3060 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #0D0B07 0%, #12100A 40%, #1A1610 100%)' }}
       />
 
       {/* HERO */}

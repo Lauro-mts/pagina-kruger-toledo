@@ -16,7 +16,7 @@ html, body {
 }
 
 body {
-  background-color: #20264F;
+  background-color: #12100A;
   color: #ffffff;
   font-family: 'Inter', sans-serif;
 }
@@ -37,5 +37,5 @@ body::before {
 }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #20264F; }
+::-webkit-scrollbar-track { background: #12100A; }
 ::-webkit-scrollbar-thumb { background: #F5F0DC44; border-radius: 2px; }
