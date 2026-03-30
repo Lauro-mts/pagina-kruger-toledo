@@ -60,6 +60,7 @@ export default function MultiStepForm() {
   const [step, setStep] = useState(0)
   const [submitted, setSubmitted] = useState(false)
   const [qualified, setQualified] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     valorDivida: '',
     situacaoDivida: '',
@@ -111,6 +112,9 @@ export default function MultiStepForm() {
   }
 
   const handleSubmit = async () => {
+    if (submitting) return
+    setSubmitting(true)
+
     const qual = isQualified(formData)
     setQualified(qual)
 
@@ -493,7 +497,7 @@ export default function MultiStepForm() {
             </div>
             <button
               onClick={handleSubmit}
-              disabled={!formData.nome || formData.whatsapp.length < 15}
+              disabled={!formData.nome || formData.whatsapp.length < 15 || submitting}
               className="w-full py-4 rounded-lg text-sm font-semibold tracking-widest uppercase transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.99]"
               style={{ backgroundColor: '#20264F', color: 'white' }}
             >
