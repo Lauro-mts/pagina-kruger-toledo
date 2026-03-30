@@ -160,7 +160,7 @@ export default function MultiStepForm() {
               </div>
               <h3
                 className="text-2xl font-semibold mb-2 leading-tight"
-                style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+                style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
               >
                 Sua dívida possui ALTAS chances de Redução!
               </h3>
@@ -194,7 +194,7 @@ export default function MultiStepForm() {
             </div>
             <h3
               className="text-xl font-semibold mb-3 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
             >
               Resultado da Análise
             </h3>
@@ -216,14 +216,14 @@ export default function MultiStepForm() {
           <span className="text-xs font-medium text-gray-500">
             Etapa {step + 1} de {totalSteps}
           </span>
-          <span className="text-xs font-medium" style={{ color: '#8C6D00' }}>
+          <span className="text-xs font-medium" style={{ color: '#20264F' }}>
             {Math.round(((step + 1) / totalSteps) * 100)}%
           </span>
         </div>
         <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
           <motion.div
             className="h-full rounded-full"
-            style={{ backgroundColor: '#8C6D00' }}
+            style={{ backgroundColor: '#20264F' }}
             initial={{ width: '20%' }}
             animate={{ width: `${((step + 1) / totalSteps) * 100}%` }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
@@ -242,12 +242,12 @@ export default function MultiStepForm() {
             exit="exit"
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#8C6D00' }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#20264F' }}>
               Pergunta 1
             </p>
             <h3
               className="text-xl font-semibold mb-5 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
             >
               Qual o valor da sua dívida?
             </h3>
@@ -263,11 +263,11 @@ export default function MultiStepForm() {
                 <button
                   key={option}
                   onClick={() => selectSingle('valorDivida', option)}
-                  className="w-full text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all duration-150 hover:border-[#8C6D00] hover:bg-[#8C6D00]/5 active:scale-[0.99]"
+                  className="w-full text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all duration-150 hover:border-[#20264F] hover:bg-[#20264F]/5 active:scale-[0.99]"
                   style={{
-                    borderColor: formData.valorDivida === option ? '#8C6D00' : '#e5e7eb',
-                    backgroundColor: formData.valorDivida === option ? '#8C6D0010' : 'white',
-                    color: '#8C6D00',
+                    borderColor: formData.valorDivida === option ? '#20264F' : '#e5e7eb',
+                    backgroundColor: formData.valorDivida === option ? '#20264F10' : 'white',
+                    color: '#20264F',
                   }}
                 >
                   {option}
@@ -287,12 +287,12 @@ export default function MultiStepForm() {
             exit="exit"
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#8C6D00' }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#20264F' }}>
               Pergunta 2
             </p>
             <h3
               className="text-xl font-semibold mb-5 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
             >
               Sua dívida está em atraso?
             </h3>
@@ -305,11 +305,11 @@ export default function MultiStepForm() {
                 <button
                   key={option}
                   onClick={() => selectSingle('situacaoDivida', option)}
-                  className="w-full text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all duration-150 hover:border-[#8C6D00] hover:bg-[#8C6D00]/5 active:scale-[0.99]"
+                  className="w-full text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all duration-150 hover:border-[#20264F] hover:bg-[#20264F]/5 active:scale-[0.99]"
                   style={{
-                    borderColor: formData.situacaoDivida === option ? '#8C6D00' : '#e5e7eb',
-                    backgroundColor: formData.situacaoDivida === option ? '#8C6D0010' : 'white',
-                    color: '#8C6D00',
+                    borderColor: formData.situacaoDivida === option ? '#20264F' : '#e5e7eb',
+                    backgroundColor: formData.situacaoDivida === option ? '#20264F10' : 'white',
+                    color: '#20264F',
                   }}
                 >
                   {option}
@@ -329,12 +329,12 @@ export default function MultiStepForm() {
             exit="exit"
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#8C6D00' }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#20264F' }}>
               Pergunta 3
             </p>
             <h3
               className="text-xl font-semibold mb-5 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
             >
               Sua dívida possui garantias?
             </h3>
@@ -343,11 +343,11 @@ export default function MultiStepForm() {
                 <button
                   key={option}
                   onClick={() => selectSingle('garantias', option)}
-                  className="w-full text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all duration-150 hover:border-[#8C6D00] hover:bg-[#8C6D00]/5 active:scale-[0.99]"
+                  className="w-full text-left px-4 py-3 rounded-lg border text-sm font-medium transition-all duration-150 hover:border-[#20264F] hover:bg-[#20264F]/5 active:scale-[0.99]"
                   style={{
-                    borderColor: formData.garantias === option ? '#8C6D00' : '#e5e7eb',
-                    backgroundColor: formData.garantias === option ? '#8C6D0010' : 'white',
-                    color: '#8C6D00',
+                    borderColor: formData.garantias === option ? '#20264F' : '#e5e7eb',
+                    backgroundColor: formData.garantias === option ? '#20264F10' : 'white',
+                    color: '#20264F',
                   }}
                 >
                   {option}
@@ -367,12 +367,12 @@ export default function MultiStepForm() {
             exit="exit"
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#8C6D00' }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#20264F' }}>
               Pergunta 4
             </p>
             <h3
               className="text-xl font-semibold mb-1 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
             >
               Quais bancos você possui dívida?
             </h3>
@@ -399,15 +399,15 @@ export default function MultiStepForm() {
                     onClick={() => toggleBank(bank)}
                     className="text-left px-3 py-3 rounded-lg border text-xs font-medium transition-all duration-150 active:scale-[0.98] flex items-center gap-2"
                     style={{
-                      borderColor: selected ? '#8C6D00' : '#e5e7eb',
-                      backgroundColor: selected ? '#8C6D00' : 'white',
-                      color: selected ? 'white' : '#8C6D00',
+                      borderColor: selected ? '#20264F' : '#e5e7eb',
+                      backgroundColor: selected ? '#20264F' : 'white',
+                      color: selected ? 'white' : '#20264F',
                     }}
                   >
                     <span
                       className="w-4 h-4 rounded border flex-shrink-0 flex items-center justify-center"
                       style={{
-                        borderColor: selected ? 'white' : '#8C6D00',
+                        borderColor: selected ? 'white' : '#20264F',
                         backgroundColor: selected ? 'white' : 'transparent',
                       }}
                     >
@@ -415,7 +415,7 @@ export default function MultiStepForm() {
                         <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none">
                           <path
                             d="M2 6l3 3 5-5"
-                            stroke="#8C6D00"
+                            stroke="#20264F"
                             strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -432,7 +432,7 @@ export default function MultiStepForm() {
               onClick={() => setStep(4)}
               disabled={formData.bancos.length === 0}
               className="w-full py-3 rounded-lg text-sm font-semibold tracking-widest uppercase transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.99]"
-              style={{ backgroundColor: '#8C6D00', color: 'white' }}
+              style={{ backgroundColor: '#20264F', color: 'white' }}
             >
               Continuar →
             </button>
@@ -449,12 +449,12 @@ export default function MultiStepForm() {
             exit="exit"
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#8C6D00' }}>
+            <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: '#20264F' }}>
               Última etapa
             </p>
             <h3
               className="text-xl font-semibold mb-5 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#8C6D00' }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
             >
               Para onde enviamos o resultado?
             </h3>
@@ -466,8 +466,8 @@ export default function MultiStepForm() {
                   value={formData.nome}
                   onChange={(e) => setFormData((p) => ({ ...p, nome: e.target.value }))}
                   placeholder="Seu nome"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8C6D00]"
-                  style={{ color: '#8C6D00' }}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#20264F]"
+                  style={{ color: '#20264F' }}
                 />
               </div>
               <div>
@@ -477,8 +477,8 @@ export default function MultiStepForm() {
                   value={formData.email}
                   onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
                   placeholder="seu@email.com"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8C6D00]"
-                  style={{ color: '#8C6D00' }}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#20264F]"
+                  style={{ color: '#20264F' }}
                 />
               </div>
               <div>
@@ -490,8 +490,8 @@ export default function MultiStepForm() {
                     setFormData((p) => ({ ...p, whatsapp: formatWhatsApp(e.target.value) }))
                   }
                   placeholder="(00) 00000-0000"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8C6D00]"
-                  style={{ color: '#8C6D00' }}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#20264F]"
+                  style={{ color: '#20264F' }}
                 />
               </div>
             </div>
@@ -499,7 +499,7 @@ export default function MultiStepForm() {
               onClick={handleSubmit}
               disabled={!formData.nome || formData.whatsapp.length < 15 || submitting}
               className="w-full py-4 rounded-lg text-sm font-semibold tracking-widest uppercase transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.99]"
-              style={{ backgroundColor: '#8C6D00', color: 'white' }}
+              style={{ backgroundColor: '#20264F', color: 'white' }}
             >
               Quero Calcular a Redução Agora
             </button>
