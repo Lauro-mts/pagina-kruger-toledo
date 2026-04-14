@@ -153,8 +153,24 @@ export default function MultiStepForm() {
         {qualified ? (
           <>
             <div className="mb-6">
-              <div className="w-16 h-16 rounded-full bg-green-500/20 border border-green-400/40 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="mb-4">
+                <div className="flex justify-end text-xs mb-1">
+                  <span style={{ color: '#E07B2A', fontWeight: 600 }}>30%</span>
+                </div>
+                <div className="w-full h-2 rounded-full overflow-hidden" style={{ backgroundColor: '#f3f4f6' }}>
+                  <div
+                    className="h-2 rounded-full"
+                    style={{
+                      backgroundColor: '#E07B2A',
+                      width: '30%',
+                      animation: 'pulse 2s ease-in-out infinite',
+                      boxShadow: '0 0 8px #E07B2A88',
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-400/40 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
@@ -180,7 +196,7 @@ export default function MultiStepForm() {
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-4 px-6 rounded-lg font-semibold text-white text-sm tracking-widest uppercase transition-all duration-200 hover:opacity-90 active:scale-95"
-              style={{ backgroundColor: '#25D366' }}
+              style={{ backgroundColor: '#E07B2A' }}
             >
               💬 Falar com Especialista
             </a>
@@ -499,7 +515,7 @@ export default function MultiStepForm() {
               onClick={handleSubmit}
               disabled={!formData.nome || formData.whatsapp.length < 15 || submitting}
               className="w-full py-4 rounded-lg text-sm font-semibold tracking-widest uppercase transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 active:scale-[0.99]"
-              style={{ backgroundColor: '#20264F', color: 'white' }}
+              style={{ backgroundColor: '#E07B2A', color: 'white' }}
             >
               Quero Calcular a Redução Agora
             </button>
