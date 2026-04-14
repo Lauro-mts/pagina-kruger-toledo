@@ -9,12 +9,12 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <section className="relative z-10 px-6 md:px-12 py-12 md:py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <section className="relative z-10 px-6 md:px-12 py-4 md:py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-20 items-center">
 
           {/* LEFT */}
           <div>
-            <div className="inline-flex items-center gap-2 mb-6">
+            <div className="inline-flex items-center gap-2 mb-3 md:mb-6">
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: '#F5F0DC99' }}>
                 Diagnóstico Gratuito
@@ -22,16 +22,16 @@ export default function Home() {
             </div>
 
             <h1
-              className="text-2xl md:text-3xl xl:text-4xl font-light leading-tight mb-6"
+              className="text-2xl md:text-3xl xl:text-4xl font-light leading-tight mb-3 md:mb-6"
               style={{ fontFamily: "'Cormorant Garamond', serif", color: '#F5F0DC' }}
             >
               Em <span className="font-semibold italic">10 segundos</span> faremos um diagnóstico se a sua dívida pode ser{' '}
               <span className="font-semibold">reduzida em até 90%</span>
             </h1>
 
-            <div className="w-12 h-px mb-6" style={{ backgroundColor: '#F5F0DC44' }} />
+            <div className="w-12 h-px mb-3 md:mb-6" style={{ backgroundColor: '#F5F0DC44' }} />
 
-            <div className="mt-10 pt-6 border-t flex items-center gap-3" style={{ borderColor: '#F5F0DC18' }}>
+            <div className="mt-3 md:mt-10 pt-3 md:pt-6 border-t flex items-center gap-3" style={{ borderColor: '#F5F0DC18' }}>
               <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F5F0DC15' }}>
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#F5F0DC" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -74,6 +74,29 @@ export default function Home() {
       </section>
 
       <div className="relative z-10 h-1 w-full" style={{ background: 'linear-gradient(90deg, transparent, #F5F0DC33, transparent)' }} />
+
+      {/* FOOTER */}
+      <footer className="relative z-10 px-6 md:px-12 py-8" style={{ borderTop: '1px solid #F5F0DC12' }}>
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
+          <p className="text-xs leading-relaxed max-w-2xl" style={{ color: '#F5F0DC44' }}>
+            <span className="font-semibold" style={{ color: '#F5F0DC66' }}>AVISO LEGAL:</span> Resultados individuais variam conforme o volume de operação, segmento e estratégia de negócio. Todos os negócios envolvem riscos e resultados dependem de múltiplos fatores.
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+            <span className="text-xs" style={{ color: '#F5F0DC33' }}>
+              © 2026 KRUGER TOLEDO SOCIEDADE INDIVIDUAL DE ADVOCACIA · CNPJ 51.110.147/0001-75 · Todos os direitos reservados.
+            </span>
+            <div className="flex items-center gap-4">
+              <a href="/termos-de-uso" className="text-xs underline underline-offset-2 transition-colors hover:opacity-80" style={{ color: '#F5F0DC55' }}>
+                Termos de Uso
+              </a>
+              <span style={{ color: '#F5F0DC22' }}>·</span>
+              <a href="/politica-de-privacidade" className="text-xs underline underline-offset-2 transition-colors hover:opacity-80" style={{ color: '#F5F0DC55' }}>
+                Política de Privacidade
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   )
 }
