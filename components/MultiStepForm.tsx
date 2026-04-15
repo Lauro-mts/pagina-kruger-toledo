@@ -155,14 +155,14 @@ export default function MultiStepForm() {
             <div className="mb-6">
               <div className="mb-4">
                 <div className="flex justify-end text-xs mb-1">
-                  <span style={{ color: '#E07B2A', fontWeight: 600 }}>30%</span>
+                  <span style={{ color: '#E07B2A', fontWeight: 600 }}>80%</span>
                 </div>
                 <div className="w-full h-2 rounded-full overflow-hidden" style={{ backgroundColor: '#f3f4f6' }}>
                   <div
                     className="h-2 rounded-full"
                     style={{
                       backgroundColor: '#E07B2A',
-                      width: '30%',
+                      width: '80%',
                       animation: 'pulse 2s ease-in-out infinite',
                       boxShadow: '0 0 8px #E07B2A88',
                     }}
@@ -180,13 +180,30 @@ export default function MultiStepForm() {
               >
                 Sua dívida possui ALTAS chances de Redução!
               </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Você acabou de receber do nosso escritório uma{' '}
-                <strong>Análise de Passivos!</strong>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Portanto, você acabou de receber do nosso escritório uma{' '}
+                <strong className="text-gray-800">Análise de Passivos!</strong>
               </p>
-              <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-                Envie uma mensagem agora clicando no botão para agendar um horário com um dos
-                nossos especialistas em redução.
+              <div className="mt-4 rounded-xl p-4 text-left" style={{ backgroundColor: '#FFF7ED', border: '1px solid #FED7AA' }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#E07B2A' }}>
+                  Nessa reunião, você receberá:
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    'Clareza do quanto a sua dívida pode ser reduzida',
+                    'Um plano de reestruturação estratégica de dívidas',
+                    'Passo a passo para reduzir suas dívidas em até 90%',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                      <span className="mt-0.5 text-base leading-none" style={{ color: '#E07B2A' }}>✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p className="text-sm text-gray-500 mt-4 leading-relaxed">
+                Envie uma mensagem agora clicando no botão para agendar um horário com um dos nossos{' '}
+                <strong className="text-gray-700">especialistas em redução de passivos bancários.</strong>
               </p>
             </div>
             <a
