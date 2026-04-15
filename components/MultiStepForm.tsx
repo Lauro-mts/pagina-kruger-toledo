@@ -215,7 +215,7 @@ export default function MultiStepForm() {
               className="block w-full py-4 px-6 rounded-lg font-semibold text-white text-sm tracking-widest uppercase transition-all duration-200 hover:opacity-90 active:scale-95"
               style={{ backgroundColor: '#E07B2A' }}
             >
-              💬 Falar com Especialista
+              💬 Agendar com Especialista
             </a>
           </>
         ) : (
