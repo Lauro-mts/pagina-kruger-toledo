@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Webhook not configured' }, { status: 500 })
     }
 
+    const extraWebhookUrl = process.env.EXTRA_WEBHOOK_URL
+
     const payload = {
       id: data.id,
       valor_divida: data.valorDivida,
@@ -28,11 +30,25 @@ export async function POST(req: NextRequest) {
       fbclid: data.fbclid,
     }
 
-    await fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
+    const requests = [
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }),
+    ]
+
+    if (extraWebhookUrl) {
+      requests.push(
+        fetch(extraWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+      )
+    }
+
+    await Promise.all(requests)
 
     return NextResponse.json({ ok: true })
   } catch (err) {
