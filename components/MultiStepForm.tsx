@@ -220,9 +220,9 @@ export default function MultiStepForm() {
           </>
         ) : (
           <>
-            <div className="w-16 h-16 rounded-full bg-red-500/20 border border-red-400/30 flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <div className="w-16 h-16 rounded-full bg-yellow-500/20 border border-yellow-400/30 flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <h3
@@ -232,8 +232,9 @@ export default function MultiStepForm() {
               Resultado da Análise
             </h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Puxa, infelizmente a sua dívida foge do escopo de atuação do nosso escritório e
-              não conseguiremos reduzir as suas dívidas.
+              Seu caso exige uma análise mais profunda. Nossa equipe irá entrar em contato para analisar com mais profundidade e criar um plano estratégico de redução de até 90%.
+              <br /><br />
+              Até daqui a pouco!
             </p>
           </>
         )}
