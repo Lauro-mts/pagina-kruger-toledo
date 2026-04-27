@@ -206,6 +206,16 @@ export default function MultiStepForm() {
                 <strong className="text-gray-700">especialistas em redução de passivos bancários.</strong>
               </p>
             </div>
+            <div className="mb-4 w-full" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+              <iframe
+                src="https://www.youtube.com/embed/CrbWLj1Nc4w?modestbranding=1&rel=0&showinfo=0&controls=1"
+                title="Vídeo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '12px' }}
+              />
+            </div>
             <a
               href={`https://wa.me/5551981385297?text=${encodeURIComponent(
                 'Olá, fui aprovado e gostaria de agendar minha análise de passivos!'
