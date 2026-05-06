@@ -202,13 +202,13 @@ export default function MultiStepForm() {
                 </ul>
               </div>
               <p className="text-sm text-gray-500 mt-4 leading-relaxed">
-                Envie uma mensagem agora clicando no botão para agendar um horário com um dos nossos{' '}
-                <strong className="text-gray-700">especialistas em redução de passivos bancários.</strong>
+                Assiste o vídeo abaixo e entenda como garantir a vaga nesse Diagnóstico{' '}
+                <strong className="text-gray-700">com um especialista em redução de passivos bancários.</strong>
               </p>
             </div>
             <div className="mb-4 w-full" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
               <iframe
-                src="https://www.youtube.com/embed/CrbWLj1Nc4w?modestbranding=1&rel=0&showinfo=0&controls=1"
+                src="https://www.youtube.com/embed/bMpLeGtnt48?modestbranding=1&rel=0&showinfo=0&controls=1"
                 title="Vídeo"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

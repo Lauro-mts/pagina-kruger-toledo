@@ -30,23 +30,22 @@ export async function POST(req: NextRequest) {
       fbclid: data.fbclid,
     }
 
-    const requests = [
-      fetch(webhookUrl, {
+    const fetchWithLog = async (name: string, url: string) => {
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-      }),
-    ]
-
-    if (extraWebhookUrl) {
-      requests.push(
-        fetch(extraWebhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        })
-      )
+      })
+      const text = await res.text().catch(() => '(sem body)')
+      if (!res.ok) {
+        console.error(`[leads] ${name} falhou — status ${res.status}: ${text.slice(0, 300)}`)
+      } else {
+        console.log(`[leads] ${name} ok — status ${res.status}`)
+      }
     }
+
+    const requests = [fetchWithLog('google-sheets', webhookUrl)]
+    if (extraWebhookUrl) requests.push(fetchWithLog('extra-webhook', extraWebhookUrl))
 
     await Promise.all(requests)
 
