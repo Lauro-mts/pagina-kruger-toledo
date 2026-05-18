@@ -124,22 +124,18 @@ export default function MultiStepForm() {
       }
     }
 
-    try {
-      await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: leadIdRef.current,
-          ...formData,
-          qualificado: qual,
-          ...utmRef.current,
-        }),
-      })
-    } catch (err) {
-      console.error('Erro ao enviar lead:', err)
-    }
-
     setSubmitted(true)
+
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: leadIdRef.current,
+        ...formData,
+        qualificado: qual,
+        ...utmRef.current,
+      }),
+    }).catch((err) => console.error('Erro ao enviar lead:', err))
   }
 
   if (submitted) {
@@ -154,26 +150,57 @@ export default function MultiStepForm() {
           <>
             <div className="mb-6">
               <div className="mb-4">
-                <div className="flex justify-end text-xs mb-1">
-                  <span style={{ color: '#E07B2A', fontWeight: 600 }}>80%</span>
+                <div className="flex justify-end items-center mb-2">
+                  <span className="text-xs font-bold" style={{ color: '#E07B2A' }}>80%</span>
                 </div>
-                <div className="w-full h-2 rounded-full overflow-hidden" style={{ backgroundColor: '#f3f4f6' }}>
-                  <div
-                    className="h-2 rounded-full"
-                    style={{
-                      backgroundColor: '#E07B2A',
-                      width: '80%',
-                      animation: 'pulse 2s ease-in-out infinite',
-                      boxShadow: '0 0 8px #E07B2A88',
-                    }}
-                  />
+                <style>{`
+                  @keyframes shimmerBar {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(500%); }
+                  }
+                `}</style>
+                <div className="w-full h-2 rounded-full relative overflow-hidden" style={{ backgroundColor: '#EBEBEB' }}>
+                  <motion.div
+                    className="h-full rounded-full relative overflow-hidden"
+                    style={{ background: 'linear-gradient(90deg, #C45F1A, #E07B2A, #F0A050)' }}
+                    initial={{ width: '0%' }}
+                    animate={{ width: '80%' }}
+                    transition={{ duration: 1.2, ease: 'easeOut' }}
+                  >
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '25%',
+                        height: '100%',
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent)',
+                        animation: 'shimmerBar 0.9s ease-in-out infinite',
+                      }}
+                    />
+                  </motion.div>
                 </div>
               </div>
-              <div className="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-400/40 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="flex items-center justify-center gap-2 mt-1 mb-6 py-2.5 px-4 rounded-full"
+                style={{
+                  background: 'linear-gradient(135deg, #FFF4EC 0%, #FFE8D6 100%)',
+                  border: '1.5px solid #E07B2A55',
+                }}
+              >
+                <motion.span
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: '#E07B2A' }}
+                  animate={{ opacity: [1, 0.25, 1], scale: [1, 1.3, 1] }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#C45F1A' }}>
+                  Restam poucas vagas para essa semana
+                </span>
+              </motion.div>
               <h3
                 className="text-2xl font-semibold mb-2 leading-tight"
                 style={{ fontFamily: "'Cormorant Garamond', serif", color: '#20264F' }}
@@ -182,50 +209,47 @@ export default function MultiStepForm() {
               </h3>
               <p className="text-sm text-gray-500 leading-relaxed">
                 Portanto, você acabou de receber do nosso escritório uma{' '}
-                <strong className="text-gray-800">Análise de Passivos!</strong>
+                <strong className="text-gray-800">Consultoria de Passivos!</strong>
               </p>
-              <div className="mt-4 rounded-xl p-4 text-left" style={{ backgroundColor: '#FFF7ED', border: '1px solid #FED7AA' }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#E07B2A' }}>
-                  Nessa reunião, você receberá:
-                </p>
-                <ul className="space-y-2">
-                  {[
-                    'Clareza do quanto a sua dívida pode ser reduzida',
-                    'Um plano de reestruturação estratégica de dívidas',
-                    'Passo a passo para reduzir suas dívidas em até 90%',
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="mt-0.5 text-base leading-none" style={{ color: '#E07B2A' }}>✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <p className="text-sm text-gray-500 mt-4 leading-relaxed">
-                Assiste o vídeo abaixo e entenda como garantir a vaga nesse Diagnóstico{' '}
-                <strong className="text-gray-700">com um especialista em redução de passivos bancários.</strong>
+              <p className="text-sm text-gray-600 leading-relaxed mt-4">
+                <strong>Aperte no botão abaixo</strong> e agende essa Consultoria agora mesmo. Restam poucas vagas essa semana, devido ao volume de empresários que nosso escritório atende diariamente.
               </p>
             </div>
-            <div className="mb-4 w-full" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-              <iframe
-                src="https://www.youtube.com/embed/bMpLeGtnt48?modestbranding=1&rel=0&showinfo=0&controls=1"
-                title="Vídeo"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '12px' }}
-              />
-            </div>
+            <style>{`
+              @keyframes btnPulse {
+                0%, 100% {
+                  transform: scale(1);
+                  box-shadow: 0 6px 24px #25D36655;
+                }
+                50% {
+                  transform: scale(1.08);
+                  box-shadow: 0 18px 64px #25D366cc;
+                }
+              }
+              .btn-agendar {
+                animation: btnPulse 1s ease-in-out infinite;
+              }
+              .btn-agendar:active {
+                animation: none;
+                transform: scale(0.96);
+              }
+            `}</style>
             <a
               href={`https://wa.me/5551981902430?text=${encodeURIComponent(
                 'Olá, fui aprovado e gostaria de agendar minha análise de passivos!'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full py-4 px-6 rounded-lg font-semibold text-white text-sm tracking-widest uppercase transition-all duration-200 hover:opacity-90 active:scale-95"
-              style={{ backgroundColor: '#E07B2A' }}
+              className="btn-agendar flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl font-bold text-white text-base relative overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #1EB854 0%, #25D366 60%, #2EE076 100%)',
+                letterSpacing: '0.03em',
+              }}
             >
-              💬 Agendar com Especialista
+              <svg width="40" height="40" viewBox="0 0 9144 9144" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" fillRule="nonzero" d="m3603 6051c170 108 348 185 531 232 188 50 383 68 577 56 512-30 964-264 1280-620 317-355 498-831 468-1344l-1-4v-1c-31-510-265-960-619-1275-356-316-832-497-1344-468l-5 1h-1c-509 31-959 265-1275 620s-497 831-467 1344v5c11 176 44 341 98 497 57 162 135 314 234 455 17 24 20 55 9 80l-327 799 759-382c27-13 59-11 83 5zm1380-484c-265-15-623-266-911-576-289-311-513-688-507-952-2-57 6-118 22-182s40-130 73-199c11-26 23-50 35-73 11-21 25-45 41-72 10-16 25-28 41-35 99-49 175-71 249-60 79 12 143 57 216 145 35 41 68 89 100 143 30 51 58 107 84 166 27 51 31 110 11 173-16 53-48 109-96 166-14 16-32 26-51 29-9 3-17 7-22 12-9 8-17 22-25 42-1 3-2 6-3 8-3 5 8 5 16 23 34 79 119 192 217 298 97 105 203 199 279 239 17 9 16 20 21 18 3-2 6-3 8-4 21-6 35-13 44-20 6-6 10-14 14-25 6-19 17-34 32-44v-1c59-43 117-71 171-83 63-13 119-6 167 23 59 31 113 63 161 97 50 34 95 71 133 109 82 79 122 146 128 225 5 75-23 149-80 245-9 16-22 27-36 34v1c-23 11-48 23-75 34-25 11-50 21-73 30-71 27-139 46-202 57-65 11-127 14-182 9zm-782-696c262 282 576 509 793 520h5c40 5 86 2 136-7 53-9 110-25 170-47 22-9 43-17 65-27 13-6 27-12 43-20 30-53 44-91 42-120-2-31-26-64-74-112-31-30-69-61-112-91s-91-59-143-85v-1c-3-1-6-3-9-5-7-5-20-5-37-1-25 5-53 19-85 40-13 28-31 52-54 72-28 26-63 43-107 57-47 17-103 6-164-26-94-49-217-157-327-276-109-118-206-249-249-347-28-65-35-124-12-170 17-41 37-74 63-99 23-22 48-37 77-48 24-31 40-60 47-84 6-17 6-30 2-38-2-3-3-6-5-9-23-56-49-107-75-152-27-44-55-84-84-119-44-53-76-79-107-84-30-4-70 8-126 34-7 13-15 27-23 42-12 23-23 44-32 63-27 59-48 116-61 168-13 51-19 96-17 137v4c-7 216 197 548 460 831zm-110 1576c-185-48-365-124-538-229l-914 460c-22 12-49 14-74 4-43-17-63-67-45-110l395-965c-96-143-173-296-229-458-59-170-96-351-107-542-1-3-1-7-1-11-31-557 166-1074 510-1461 344-386 834-642 1391-676 3 0 7-1 11-1v1c557-32 1075 165 1461 510 386 343 642 834 676 1390 0 4 1 8 1 11v1c31 557-166 1074-510 1461-345 387-838 643-1398 676-211 12-422-7-629-61z"/>
+              </svg>
+              Agendar Consultoria Agora
             </a>
           </>
         ) : (
