@@ -20,6 +20,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
           fbq('init','583862243163677');fbq('track','PageView');
         `}</Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11079538677"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-11079538677');
+        `}</Script>
       </head>
       <body>{children}</body>
     </html>

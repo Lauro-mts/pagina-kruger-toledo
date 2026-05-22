@@ -122,6 +122,9 @@ export default function MultiStepForm() {
       if (typeof window !== 'undefined' && (window as any).fbq) {
         ;(window as any).fbq('track', 'Lead')
       }
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        ;(window as any).gtag('event', 'conversion', { send_to: 'AW-11079538677' })
+      }
     }
 
     setSubmitted(true)
