@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
     // Payload de pré-popular contexto da IA: phone na raiz + dados_coletados como objeto.
     const aiContextPayload = {
       phone,
+      name: data.nome || '',
       dados_coletados: {
         valor_divida_total: data.valorDivida || '', // faixa como texto
         bancos_envolvidos: Array.isArray(data.bancos)
@@ -81,7 +82,6 @@ export async function POST(req: NextRequest) {
 
     const requests = [fetchWithLog('google-sheets', webhookUrl)]
     if (extraWebhookUrl) requests.push(fetchWithLog('extra-webhook', extraWebhookUrl))
-    requests.push(fetchWithLog('lexa-crm', lexaWebhookUrl))
     requests.push(fetchWithLog('lexa-ai-context', lexaWebhookUrl, aiContextPayload))
 
     await Promise.all(requests)
