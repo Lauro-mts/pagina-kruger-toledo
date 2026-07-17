@@ -44,8 +44,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    const lexaWebhookUrl = 'https://apicrm.lexa-ia.com.br/webhooks/automation/805ce1f5-2155-4f66-bde4-d6f2cb01f5fe'
+
     const requests = [fetchWithLog('google-sheets', webhookUrl)]
     if (extraWebhookUrl) requests.push(fetchWithLog('extra-webhook', extraWebhookUrl))
+    requests.push(fetchWithLog('lexa-crm', lexaWebhookUrl))
 
     await Promise.all(requests)
 
