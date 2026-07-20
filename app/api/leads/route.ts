@@ -1,5 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Telefone em dígitos E.164 (com DDI 55) para o CRM — o form envia
+// "(DD) 9XXXX-XXXX" e, sem o DDI, o CRM não consegue deduplicar o lead
+// pelas variações do número (com/sem 9º dígito).
+function phoneForCrm(raw: string): string {
+  const digits = (raw || '').replace(/\D/g, '')
+  if (!digits) return ''
+  if (digits.startsWith('55') && (digits.length === 12 || digits.length === 13)) return digits
+  if (digits.length === 10 || digits.length === 11) return `55${digits}`
+  return digits
+}
+
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json()
@@ -30,11 +41,11 @@ export async function POST(req: NextRequest) {
       fbclid: data.fbclid,
     }
 
-    const fetchWithLog = async (name: string, url: string) => {
+    const fetchWithLog = async (name: string, url: string, body: unknown = payload) => {
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(body),
       })
       const text = await res.text().catch(() => '(sem body)')
       if (!res.ok) {
@@ -48,7 +59,12 @@ export async function POST(req: NextRequest) {
 
     const requests = [fetchWithLog('google-sheets', webhookUrl)]
     if (extraWebhookUrl) requests.push(fetchWithLog('extra-webhook', extraWebhookUrl))
-    requests.push(fetchWithLog('lexa-crm', lexaWebhookUrl))
+    requests.push(
+      fetchWithLog('lexa-crm', lexaWebhookUrl, {
+        ...payload,
+        phone: phoneForCrm(data.whatsapp),
+      }),
+    )
 
     await Promise.all(requests)
 
