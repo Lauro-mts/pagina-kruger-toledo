@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
 
     const lexaWebhookUrl = 'https://apicrm.lexa-ia.com.br/webhooks/automation/805ce1f5-2155-4f66-bde4-d6f2cb01f5fe'
     const dataCrazyWebhookUrl =
-      'https://api.datacrazy.io/v1/crm/api/crm/flows/webhooks/a8490509-8831-4b28-9c58-8b89b02ac31c/f863acd6-298b-4153-81ed-26b1d52fdc22'
+      'https://api.datacrazy.io/v1/crm/api/crm/flows/webhooks/a8490509-8831-4b28-9c58-8b89b02ac31c/477b0827-64e3-45ee-be66-2167390a20ea'
 
     const requests = [fetchWithLog('google-sheets', webhookUrl)]
     if (extraWebhookUrl) requests.push(fetchWithLog('extra-webhook', extraWebhookUrl))
