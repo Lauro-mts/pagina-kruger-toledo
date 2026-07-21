@@ -61,12 +61,7 @@ export async function POST(req: NextRequest) {
 
     const requests = [fetchWithLog('google-sheets', webhookUrl)]
     if (extraWebhookUrl) requests.push(fetchWithLog('extra-webhook', extraWebhookUrl))
-    requests.push(
-      fetchWithLog('datacrazy', dataCrazyWebhookUrl, {
-        ...payload,
-        phone: phoneForCrm(data.whatsapp),
-      }),
-    )
+    requests.push(fetchWithLog('datacrazy', dataCrazyWebhookUrl))
     requests.push(
       fetchWithLog('lexa-crm', lexaWebhookUrl, {
         ...payload,
